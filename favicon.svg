@@ -91,14 +91,14 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#7d7d33"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0.45098039"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-548.57143"
-     inkscape:cy="560"
+     inkscape:cx="-158.57143"
+     inkscape:cy="1020"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -118,7 +118,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -129,42 +129,25 @@
      transform="translate(0,-32.416641)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.83333588px;line-height:125%;font-family:monospace;-inkscape-font-specification:'monospace Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="9.0714321"
-       y="119.35117"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:141.1111145px;line-height:125%;font-family:monospace;-inkscape-font-specification:'monospace Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="56.69643"
+       y="147.32143"
        id="text817"><tspan
          sodipodi:role="line"
          id="tspan815"
-         x="9.0714321"
-         y="119.35117"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.83333588px;font-family:monospace;-inkscape-font-specification:'monospace Bold';stroke-width:0.26458332px">MQTT</tspan></text>
+         x="56.69643"
+         y="147.32143"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:141.1111145px;font-family:monospace;-inkscape-font-specification:'monospace Bold';stroke-width:0.26458332px">MQ</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.83333588px;line-height:125%;font-family:monospace;-inkscape-font-specification:'monospace Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="77.863091"
-       y="287.17258"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:141.1111145px;line-height:125%;font-family:monospace;-inkscape-font-specification:'monospace Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="57.452377"
+       y="282.63684"
        id="text821"><tspan
          sodipodi:role="line"
          id="tspan819"
-         x="77.863091"
-         y="287.17258"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.83333588px;font-family:monospace;-inkscape-font-specification:'monospace Bold';stroke-width:0.26458332px">DB</tspan></text>
-    <path
-       sodipodi:type="star"
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.92299986;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path2136"
-       sodipodi:sides="3"
-       sodipodi:cx="136.82738"
-       sodipodi:cy="157.90474"
-       sodipodi:r1="33.261906"
-       sodipodi:r2="16.630953"
-       sodipodi:arg1="1.5707963"
-       sodipodi:arg2="2.6179939"
-       inkscape:flatsided="true"
-       inkscape:rounded="0"
-       inkscape:randomized="0"
-       d="m 136.82738,191.16665 -28.80566,-49.89286 57.61131,0 z"
-       inkscape:transform-center-x="1.6857143e-06"
-       inkscape:transform-center-y="8.3154749" />
+         x="57.452377"
+         y="282.63684"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:141.1111145px;font-family:monospace;-inkscape-font-specification:'monospace Bold';stroke-width:0.26458332px">TT</tspan></text>
   </g>
 </svg>
