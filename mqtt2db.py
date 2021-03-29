@@ -12,15 +12,14 @@ from typing import List, Dict, Optional, Any, Tuple
 import argparse
 import functools
 import http.server
-import json
 import logging
-import time
 import paho.mqtt.client as mqtt
 import platform
-import sqlite3
-import re
 import queue
+import re
+import sqlite3
 import threading
+import time
 
 PARSER = argparse.ArgumentParser(description="mqtt2db")
 PARSER.add_argument("--mqtt_broker", default="192.168.1.1",
@@ -64,9 +63,7 @@ class MsgStats:
         self.num_msg_igonred = 0
         self.num_msg_processed = 0
         self.num_msg_flushed = 0
-
         self.num_msg_by_topic: Dict[str, int] = {}
-
         self.most_recent_timestamp_by_task: Dict[str, float] = {}
 
     def RegisterProcessed(self, timestamp, task, msg):
@@ -270,14 +267,15 @@ HTML_EPILOG = """
 
 
 def RenderStatusPage():
-    global MSG_STATS
+    global MSG_STATS, ARGS
     html = ["<h3>Stats</h3>"
             "<pre>",
+            f"up for: {int(time.time() - MSG_STATS.start_time)}s",
             f"processed: {MSG_STATS.num_msg_processed:7}",
             f"ingored:   {MSG_STATS.num_msg_igonred:7}",
             f"flushed:   {MSG_STATS.num_msg_flushed:7}",
             f"max topic length: {MSG_STATS.max_topic_len}",
-            f"up for: {int(time.time() - MSG_STATS.start_time)}s",
+            f"topics: {ARGS.topic}",
             "</pre>"
             ]
     html += ["<h3>Most recent message timestamp by task</h3>",
