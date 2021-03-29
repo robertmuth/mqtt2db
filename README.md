@@ -1,7 +1,7 @@
 ## MQTT2DB - A simple DB persister for mqtt messages
 
 
-* listens to all mqtt messages from the specified broker and stores them
+* listens to select mqtt messages from the specified broker and stores them
   into a DB (currently sqlite)
 * indended for situations where messages contain time series data
 * expects topics to be structured like so `source/host/metric-part1/metric-part2/...`

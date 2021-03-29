@@ -22,24 +22,31 @@ import re
 import queue
 import threading
 
-############################################################
-# A few globals which were hard to avoid
-############################################################
-
 PARSER = argparse.ArgumentParser(description="mqtt2db")
-PARSER.add_argument("--mqtt_broker", default="192.168.1.1")
-PARSER.add_argument("--mqtt_port", default=1883)
-PARSER.add_argument("--dryrun", action="store_true", default=False)
-PARSER.add_argument("--verbose", action="store_true", default=False)
+PARSER.add_argument("--mqtt_broker", default="192.168.1.1",
+                    help="MQTT broker to subscribe to")
+PARSER.add_argument("--mqtt_port", default=1883,
+                    help="MQTT broker port")
+PARSER.add_argument("--verbose", action="store_true", default=False,
+                    help="Increase log level to INFO")
+PARSER.add_argument("--debug", action="store_true", default=False,
+                    help="Increase log level to DEBUG")
 
-PARSER.add_argument("--host", default="")
-PARSER.add_argument("--port", default=7777)
-PARSER.add_argument("--sqlitedb", default="")
+PARSER.add_argument("--host", default="",
+                    help="hostname to use for debug webserver")
+PARSER.add_argument("--port", default=7777,
+                    help="port to use for debug webserver")
+PARSER.add_argument("--sqlitedb", default="",
+                    help="sqlite3 DB to persist messages to if non-empty")
+PARSER.add_argument("--topic", action="append",
+                    help="topic to subscribe to - can be repeated")
 
 
 ARGS = PARSER.parse_args()
 if ARGS.verbose:
     logging.basicConfig(level=logging.INFO)
+if ARGS.debug:
+    logging.basicConfig(level=logging.DEBUG)
 
 
 MQTT_CLIENT: Optional["MqttClient"] = None
@@ -194,7 +201,7 @@ def MsgPersisterSqlite():
             MSG_STATS.num_msg_flushed += 1
             row = list(key) + [timestamp]
             if RE_FLOATS.match(payload):
-                logging.info(f"processing floats {msg.topic}")
+                logging.debug(f"processing floats {msg.topic}")
                 row += [float(x) for x in payload.split(":")]
                 row += [None] * (8 - len(row))
                 cursor.executemany(
@@ -204,7 +211,7 @@ def MsgPersisterSqlite():
                    VALUES(?, ?, ?, ?, ?, ?, ?, ?)""",
                     [row])
             else:
-                logging.info(f"processing str {msg.topic} {repr(payload)}")
+                logging.debug(f"processing str {msg.topic} {repr(payload)}")
                 row.append(payload)
                 cursor.executemany(
                     """INSERT INTO
@@ -326,7 +333,6 @@ class MqttClient:
         log.error("paho problem %s %s %s", userdata, level, buff)
 
     def EmitMessage(self, topic, message, retain=True):
-        logging.info("MQTT %s %s", topic, message)
         self.client.publish(topic, message, retain)
 
     def EmitStatusMessage(self):
@@ -343,15 +349,16 @@ class MqttClient:
             dummy)
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
-        self.client.subscribe("#")
+        for topic in ARGS.topic:
+            logging.info(f"subscribing to [{topic}]")
+            self.client.subscribe(topic)
         self.EmitStatusMessage()
 
     # in its infinite wisdom, paho silently drops errors in callbacks
     @exception
     def on_message(self, client, userdata, msg):
         """allback for when a PUBLISH message is received from the server"""
-        logging.info("TRIGGER: %s %s %s", msg.topic,
-                     msg.payload, userdata)
+        logging.debug(f"received: {msg.topic} {msg.payload} {userdata}")
         try:
             self.on_message_handler(msg)
 
